@@ -3,121 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Captación</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Sistema de Captación de Agua</title>
+
+    <!-- ICONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- CHART JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
+    <!-- HEADER -->
     <header>
-        <h1 id="titulo-pantalla">Inicio</h1>
+        <h1><i class="fa-solid fa-droplet"></i> Sistema de Agua #27</h1>
     </header>
 
+    <!-- CONTENEDOR PRINCIPAL -->
     <main>
 
-        <!-- 🟦 INICIO -->
-        <section class="pantalla activa" id="pantalla-inicio">
-            <h2>Sistema de Captación #12</h2>
-            <p class="descripcion-inicio">
-                Bienvenido al panel informativo del sistema de captación de agua. 
-                Aquí podrás ver el estado general, la cantidad recolectada por mes y el uso del agua almacenada.
-            </p>
+        <!-- PANTALLA: INICIO -->
+        <section id="pantalla-inicio" class="pantalla activa">
+
+            <h2 class="titulo-seccion">Estado General</h2>
+
+            <div class="card estado">
+                <h3><i class="fa-solid fa-signal"></i> Estado del Sistema</h3>
+                <p id="estado-texto">✔ Todo en buen funcionamiento</p>
+            </div>
+
+            <h2 class="titulo-seccion">Resumen del Mes</h2>
+
+            <div class="card">
+                <h3><i class="fa-solid fa-water"></i> Agua Recolectada (Litros)</h3>
+                <canvas id="graficoMes" class="grafico"></canvas>
+            </div>
+
         </section>
 
-        <!-- 🟩 RECOLECCIÓN (12 MESES) -->
-        <section class="pantalla" id="pantalla-recoleccion">
-            <h2>Agua recolectada por mes</h2>
-            <p>Datos demostrativos:</p>
+        <!-- PANTALLA: MESES -->
+        <section id="pantalla-meses" class="pantalla">
 
-            <table>
-                <tr><th>Mes</th><th>Litros</th></tr>
-                <tr><td>Enero</td><td>1020 L</td></tr>
-                <tr><td>Febrero</td><td>980 L</td></tr>
-                <tr><td>Marzo</td><td>1100 L</td></tr>
-                <tr><td>Abril</td><td>1150 L</td></tr>
-                <tr><td>Mayo</td><td>1190 L</td></tr>
-                <tr><td>Junio</td><td>1050 L</td></tr>
-                <tr><td>Julio</td><td>1005 L</td></tr>
-                <tr><td>Agosto</td><td>1080 L</td></tr>
-                <tr><td>Septiembre</td><td>1125 L</td></tr>
-                <tr><td>Octubre</td><td>990 L</td></tr>
-                <tr><td>Noviembre</td><td>1015 L</td></tr>
-                <tr><td>Diciembre</td><td>1200 L</td></tr>
-            </table>
+            <h2 class="titulo-seccion">Recolección por Mes</h2>
 
-            <p class="nota">Estos valores representan solo ejemplos para la interfaz.</p>
+            <div class="tabla-container">
+                <table>
+                    <tr><th>Mes</th><th>Litros Recolectados</th></tr>
+                    <tbody id="tabla-meses"></tbody>
+                </table>
+            </div>
         </section>
 
-        <!-- 🟥 ESTADO DEL SISTEMA -->
-        <section class="pantalla" id="pantalla-estado">
-            <h2>Estado del sistema</h2>
+        <!-- PANTALLA: CONSUMO -->
+        <section id="pantalla-consumo" class="pantalla">
 
-            <div id="estado-cuadro" class="estado-ok">
-                ✔ Todo en orden
-            </div>
+            <h2 class="titulo-seccion">Consumo del Agua</h2>
 
-            <p class="nota">Aquí se mostrará si el sistema funciona correctamente o si necesita revisión.</p>
+            <div id="contenedor-consumo"></div>
+
         </section>
 
-        <!-- 🟧 USO DEL AGUA (NUEVA SECCIÓN) -->
-        <section class="pantalla" id="pantalla-uso">
-            <h2>Uso del agua recolectada</h2>
-            <p>Datos de ejemplo para 3 meses:</p>
+        <!-- PANTALLA: CONFIG -->
+        <section id="pantalla-config" class="pantalla">
+            <h2 class="titulo-seccion">Configuración</h2>
 
-            <!-- MES 1 -->
-            <div class="card-uso">
-                <h3>Mes: Enero</h3>
-                <p>Total recolectado: <b>1020 L</b></p>
-
-                <ul>
-                    <li>Punto 1 (35%): 357 L</li>
-                    <li>Punto 2 (20%): 204 L</li>
-                    <li>Punto 3 (30%): 306 L</li>
-                </ul>
-
-                <p>Litros restantes en tanque: <b>153 L</b></p>
+            <div class="card">
+                <p>Aquí puedes añadir configuraciones más adelante.</p>
             </div>
-
-            <!-- MES 2 -->
-            <div class="card-uso">
-                <h3>Mes: Febrero</h3>
-                <p>Total recolectado: <b>980 L</b></p>
-
-                <ul>
-                    <li>Punto 1 (40%): 392 L</li>
-                    <li>Punto 2 (25%): 245 L</li>
-                    <li>Punto 3 (22%): 215 L</li>
-                </ul>
-
-                <p>Litros restantes en tanque: <b>128 L</b></p>
-            </div>
-
-            <!-- MES 3 -->
-            <div class="card-uso">
-                <h3>Mes: Marzo</h3>
-                <p>Total recolectado: <b>1100 L</b></p>
-
-                <ul>
-                    <li>Punto 1 (28%): 308 L</li>
-                    <li>Punto 2 (33%): 363 L</li>
-                    <li>Punto 3 (25%): 275 L</li>
-                </ul>
-
-                <p>Litros restantes en tanque: <b>154 L</b></p>
-            </div>
-
-            <p class="nota">Estos valores son solo demostrativos.</p>
         </section>
 
     </main>
 
-    <nav>
-        <button onclick="cambiarPantalla('inicio')">Inicio</button>
-        <button onclick="cambiarPantalla('recoleccion')">Recolección</button>
-        <button onclick="cambiarPantalla('estado')">Estado</button>
-        <button onclick="cambiarPantalla('uso')">Uso</button>
+    <!-- MENÚ INFERIOR -->
+    <nav class="menu">
+        <button class="btn-menu" onclick="mostrarPantalla('inicio')">
+            <i class="fa-solid fa-house"></i><br>Inicio
+        </button>
+
+        <button class="btn-menu" onclick="mostrarPantalla('meses')">
+            <i class="fa-solid fa-calendar"></i><br>Meses
+        </button>
+
+        <button class="btn-menu" onclick="mostrarPantalla('consumo')">
+            <i class="fa-solid fa-chart-pie"></i><br>Consumo
+        </button>
+
+        <button class="btn-menu" onclick="mostrarPantalla('config')">
+            <i class="fa-solid fa-gear"></i><br>Config
+        </button>
     </nav>
 
-    <script src="app.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>
 
