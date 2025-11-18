@@ -1,116 +1,72 @@
+/* FUENTE */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #eef3f8;
+    font-family: 'Poppins', sans-serif;
+    background: #f6fff7;
+    color: #1f3b1f;
 }
 
+/* HEADER */
 header {
-    background: linear-gradient(to right, #007bff, #00b4ff);
+    background: #2e7d32;
     color: white;
     padding: 15px;
     text-align: center;
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-main {
-    padding: 20px;
-    min-height: calc(100vh - 140px);
+/* TITULOS */
+.titulo-seccion {
+    margin: 20px 0 10px;
+    padding-left: 15px;
+    font-size: 20px;
+    color: #2e7d32;
 }
 
-h2 {
-    margin-top: 0;
-    color: #0056b3;
+/* TARJETAS */
+.card {
+    background: white;
+    margin: 10px 15px;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
 
-.descripcion-inicio {
-    font-size: 17px;
-    color: #333;
+.card h3 {
+    margin: 0 0 10px;
 }
 
-/* Tablas */
+/* ESTADO */
+.estado {
+    border-left: 5px solid #43a047;
+}
+
+/* TABLAS */
 table {
-    width: 100%;
+    width: 90%;
+    margin: auto;
     border-collapse: collapse;
-    margin-top: 10px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
 }
 
-table th, table td {
-    border: 1px solid #ccc;
+th {
+    background: #66bb6a;
+    color: white;
     padding: 10px;
-    text-align: center;
 }
 
-table th {
-    background: #dfeaff;
-    font-weight: bold;
+td {
+    padding: 10px;
+    background: #e8f5e9;
+    border-bottom: 2px solid white;
 }
 
-/* Estado */
-.estado-ok {
-    background: #c8f7c5;
-    padding: 20px;
-    border-radius: 10px;
-    font-size: 18px;
-    text-align: center;
-    border: 2px solid #44cc44;
-}
-
-.estado-alerta {
-    background: #f7c5c5;
-    padding: 20px;
-    border-radius: 10px;
-    font-size: 18px;
-    text-align: center;
-    border: 2px solid #cc4444;
-}
-
-/* Tarjetas de uso de agua */
-.card-uso {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-}
-
-.card-uso h3 {
-    color: #0056b3;
-}
-
-.card-uso ul {
-    padding-left: 18px;
-}
-
-/* Menú */
-nav {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: white;
-    border-top: 1px solid #bbb;
-    display: flex;
-    justify-content: space-around;
-}
-
-nav button {
-    flex: 1;
-    padding: 15px;
-    border: none;
-    background: none;
-    font-size: 16px;
-    cursor: pointer;
-    color: #007bff;
-}
-
-nav button:hover {
-    background: #e6f2ff;
-}
-
-/* Pantallas */
+/* PANTALLAS */
 .pantalla {
     display: none;
 }
@@ -119,8 +75,27 @@ nav button:hover {
     display: block;
 }
 
-.nota {
-    margin-top: 10px;
-    color: #666;
+/* MENU INFERIOR */
+.menu {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #388e3c;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+}
+
+.btn-menu {
+    background: none;
+    border: none;
+    color: white;
     font-size: 14px;
 }
+
+/* GRAFICOS */
+.grafico {
+    width: 100%;
+    height: 250px;
+}
+
