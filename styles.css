@@ -1,101 +1,161 @@
-/* FUENTE */
+/* Google-like clean style, verde + blanco theme */
+/* TIPOGRAFÍA */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #f6fff7;
-    color: #1f3b1f;
+:root{
+  --bg: #f6fff7;
+  --card: #ffffff;
+  --text: #16321a;
+  --muted: #6b7a6a;
+  --accent: #2e7d32;
+  --accent-2: #43a047;
+  --danger: #cc3333;
+  --glass: rgba(255,255,255,0.7);
 }
 
-/* HEADER */
-header {
-    background: #2e7d32;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 18px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+/* DARK MODE VARS */
+:root.dark{
+  --bg: #0f1720;
+  --card: #0b1310;
+  --text: #d7f5e2;
+  --muted: #9bb69b;
+  --accent: #1b5e20;
+  --accent-2: #2e7d32;
 }
 
-/* TITULOS */
-.titulo-seccion {
-    margin: 20px 0 10px;
-    padding-left: 15px;
-    font-size: 20px;
-    color: #2e7d32;
+*{box-sizing: border-box}
+body{
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-/* TARJETAS */
-.card {
-    background: white;
-    margin: 10px 15px;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+/* TOPBAR */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 16px;
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:40;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.topbar h1{
+  font-size:18px;
+  margin:0 12px;
+  display:inline-block;
+}
+.icon-btn{
+  border: none;
+  background: transparent;
+  color:inherit;
+  font-size:18px;
+  cursor:pointer;
+  padding:8px;
+  border-radius:8px;
+}
+.icon-btn:hover{ background: rgba(255,255,255,0.05) }
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  left:-320px;
+  top:0;
+  bottom:0;
+  width:300px;
+  background: linear-gradient(180deg,var(--card),#f1fff1);
+  box-shadow: 2px 0 10px rgba(0,0,0,0.12);
+  transition: left 0.28s ease;
+  z-index:45;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.sidebar.show{ left:0 }
+.sidebar-header{ display:flex; align-items:center; justify-content:space-between }
+.sidebar-header h3{ margin:0; font-size:18px; color:var(--accent) }
+.sidebar-nav{ display:flex; flex-direction:column; gap:8px; margin-top:6px }
+.side-link{
+  display:flex; align-items:center; gap:10px; padding:10px; border-radius:8px; border:none;
+  background:transparent; cursor:pointer; color:var(--text); text-align:left;
+}
+.side-link:hover{ background: rgba(0,0,0,0.03) }
+
+/* MAIN container */
+.container{
+  max-width:1100px;
+  margin:20px auto;
+  padding:16px;
 }
 
-.card h3 {
-    margin: 0 0 10px;
+/* SECTIONS and cards */
+.section-title{ font-size:20px; margin:6px 0; color:var(--accent) }
+.muted{ color:var(--muted); font-size:13px; margin-top:6px }
+
+.card{
+  background:var(--card);
+  border-radius:12px;
+  padding:14px;
+  margin:12px 0;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
-/* ESTADO */
-.estado {
-    border-left: 5px solid #43a047;
+/* QUICK CARDS ROW */
+.quick-cards{ display:grid; grid-template-columns: repeat(4,1fr); gap:12px; margin-top:12px }
+.card.small{ padding:12px; text-align:left; }
+.card.small h4{ margin:0 0 8px; font-size:14px }
+
+/* TANK INDICATOR */
+.tank-wrapper{ display:flex; justify-content:flex-start; align-items:center; gap:10px }
+.tank-indicator{
+  width:70px; height:70px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background: conic-gradient(var(--accent-2) 0deg, var(--accent-2) 0deg, #e6f4ea 0deg);
+  box-shadow: inset 0 -6px 10px rgba(0,0,0,0.06);
+}
+.tank-percent{ font-weight:600; color:var(--text) }
+
+/* TABLE */
+.table{ width:100%; border-collapse: collapse; font-size:14px }
+.table th{ text-align:left; padding:10px; background: linear-gradient(90deg,var(--accent),var(--accent-2)); color:white; border-radius:6px 6px 0 0 }
+.table td{ padding:10px; border-bottom: 1px dashed rgba(0,0,0,0.05); background:transparent }
+
+/* grafico */
+.grafico{ width:100%; height:260px }
+
+/* bottom nav */
+.bottom-nav{
+  position:fixed; bottom:12px; left:50%; transform:translateX(-50%);
+  background:rgba(255,255,255,0.95); border-radius:40px; padding:6px 10px; display:flex; gap:8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12); z-index:50;
+}
+.bottom-nav button{ background:transparent; border:none; padding:10px; font-size:16px; cursor:pointer }
+
+/* responsive */
+@media(max-width:900px){
+  .container{ padding:10px; margin:10px }
+  .quick-cards{ grid-template-columns: repeat(2,1fr) }
+  .sidebar{ width:260px }
+}
+@media(max-width:520px){
+  .quick-cards{ grid-template-columns: repeat(1,1fr) }
+  .topbar h1{ font-size:16px }
+  .bottom-nav{ left:0; transform:none; width:100%; border-radius:0; justify-content:space-around }
 }
 
-/* TABLAS */
-table {
-    width: 90%;
-    margin: auto;
-    border-collapse: collapse;
-}
+/* small utilities */
+.row{ display:flex; gap:8px; margin-top:10px }
+.btn{ padding:8px 12px; border-radius:8px; border:1px solid rgba(0,0,0,0.06); cursor:pointer; background:var(--card) }
+.btn.primary{ background:var(--accent); color:white; border:none }
+.weather-card{ background:linear-gradient(90deg,#f0fff0,#e6f7e6); padding:10px; border-radius:8px }
 
-th {
-    background: #66bb6a;
-    color: white;
-    padding: 10px;
-}
-
-td {
-    padding: 10px;
-    background: #e8f5e9;
-    border-bottom: 2px solid white;
-}
-
-/* PANTALLAS */
-.pantalla {
-    display: none;
-}
-
-.pantalla.activa {
-    display: block;
-}
-
-/* MENU INFERIOR */
-.menu {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: #388e3c;
-    display: flex;
-    justify-content: space-around;
-    padding: 8px 0;
-}
-
-.btn-menu {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 14px;
-}
-
-/* GRAFICOS */
-.grafico {
-    width: 100%;
-    height: 250px;
-}
-
+/* subtle theme for dark */
+:root.dark .sidebar{ background: linear-gradient(180deg,var(--card),#062012) }
+:root.dark .weather-card{ background: linear-gradient(90deg,#002214,#002a1a) }
