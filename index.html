@@ -1,104 +1,154 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Captación de Agua</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sistema de Captación · Panel</title>
 
-    <!-- ICONOS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- ICONOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- ESTILOS -->
-    <link rel="stylesheet" href="styles.css">
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="styles.css">
 
-    <!-- CHART JS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+  <!-- CHART.JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h3><i class="fa-solid fa-droplet"></i> Mi Sistema</h3>
+      <button id="closeSidebar" class="icon-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
 
-    <!-- HEADER -->
-    <header>
-        <h1><i class="fa-solid fa-droplet"></i> Sistema de Agua #27</h1>
-    </header>
-
-    <!-- CONTENEDOR PRINCIPAL -->
-    <main>
-
-        <!-- PANTALLA: INICIO -->
-        <section id="pantalla-inicio" class="pantalla activa">
-
-            <h2 class="titulo-seccion">Estado General</h2>
-
-            <div class="card estado">
-                <h3><i class="fa-solid fa-signal"></i> Estado del Sistema</h3>
-                <p id="estado-texto">✔ Todo en buen funcionamiento</p>
-            </div>
-
-            <h2 class="titulo-seccion">Resumen del Mes</h2>
-
-            <div class="card">
-                <h3><i class="fa-solid fa-water"></i> Agua Recolectada (Litros)</h3>
-                <canvas id="graficoMes" class="grafico"></canvas>
-            </div>
-
-        </section>
-
-        <!-- PANTALLA: MESES -->
-        <section id="pantalla-meses" class="pantalla">
-
-            <h2 class="titulo-seccion">Recolección por Mes</h2>
-
-            <div class="tabla-container">
-                <table>
-                    <tr><th>Mes</th><th>Litros Recolectados</th></tr>
-                    <tbody id="tabla-meses"></tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- PANTALLA: CONSUMO -->
-        <section id="pantalla-consumo" class="pantalla">
-
-            <h2 class="titulo-seccion">Consumo del Agua</h2>
-
-            <div id="contenedor-consumo"></div>
-
-        </section>
-
-        <!-- PANTALLA: CONFIG -->
-        <section id="pantalla-config" class="pantalla">
-            <h2 class="titulo-seccion">Configuración</h2>
-
-            <div class="card">
-                <p>Aquí puedes añadir configuraciones más adelante.</p>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- MENÚ INFERIOR -->
-    <nav class="menu">
-        <button class="btn-menu" onclick="mostrarPantalla('inicio')">
-            <i class="fa-solid fa-house"></i><br>Inicio
-        </button>
-
-        <button class="btn-menu" onclick="mostrarPantalla('meses')">
-            <i class="fa-solid fa-calendar"></i><br>Meses
-        </button>
-
-        <button class="btn-menu" onclick="mostrarPantalla('consumo')">
-            <i class="fa-solid fa-chart-pie"></i><br>Consumo
-        </button>
-
-        <button class="btn-menu" onclick="mostrarPantalla('config')">
-            <i class="fa-solid fa-gear"></i><br>Config
-        </button>
+    <nav class="sidebar-nav">
+      <button onclick="mostrarPantalla('inicio')" class="side-link"><i class="fa-solid fa-house"></i> Inicio</button>
+      <button onclick="mostrarPantalla('meses')" class="side-link"><i class="fa-solid fa-calendar"></i> Recolección</button>
+      <button onclick="mostrarPantalla('consumo')" class="side-link"><i class="fa-solid fa-chart-pie"></i> Consumo</button>
+      <button onclick="mostrarPantalla('config')" class="side-link"><i class="fa-solid fa-gear"></i> Configuración</button>
     </nav>
 
-    <!-- TU SCRIPT PRINCIPAL (el archivo se llama app.js, NO script.js) -->
-    <script src="app.js"></script>
+    <div class="sidebar-footer">
+      <small>© 2025 - Panel de Captación</small>
+    </div>
+  </aside>
 
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="left">
+      <button id="openSidebar" class="icon-btn"><i class="fa-solid fa-bars"></i></button>
+      <h1 id="siteTitle"><i class="fa-solid fa-droplet"></i> Sistema de Agua #27</h1>
+    </div>
+
+    <div class="right">
+      <button id="themeToggle" class="icon-btn" title="Cambiar tema"><i id="themeIcon" class="fa-solid fa-moon"></i></button>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container">
+    <!-- Inicio -->
+    <section id="pantalla-inicio" class="pantalla activa">
+      <h2 class="section-title"><i class="fa-solid fa-signal"></i> Estado General</h2>
+      <p class="muted">Visión rápida del sistema y sus indicadores principales.</p>
+
+      <!-- Quick cards -->
+      <div class="quick-cards">
+        <div class="card small">
+          <h4><i class="fa-solid fa-droplet"></i> Recolectado hoy</h4>
+          <p id="quick-today">-- L</p>
+          <small class="muted">Estimado de hoy</small>
+        </div>
+
+        <div class="card small">
+          <h4><i class="fa-solid fa-calendar-day"></i> Promedio diario</h4>
+          <p id="quick-avg">-- L</p>
+          <small class="muted">Promedio mensual</small>
+        </div>
+
+        <div class="card small">
+          <h4><i class="fa-solid fa-tank-water"></i> Capacidad tanque</h4>
+          <div class="tank-wrapper">
+            <div id="tankIndicator" class="tank-indicator">
+              <div id="tankPercent" class="tank-percent">--%</div>
+            </div>
+          </div>
+          <small class="muted">Litros en tanque</small>
+        </div>
+
+        <div class="card small">
+          <h4><i class="fa-solid fa-seedling"></i> Estado</h4>
+          <p id="quick-state">Cargando...</p>
+          <small class="muted">Revisión recomendada</small>
+        </div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="card">
+        <h3><i class="fa-solid fa-info-circle"></i> Resumen del mes</h3>
+        <p class="muted">Gráfico con el total recolectado por cada mes. Los datos son de ejemplo pero reflejan la estructura real.</p>
+        <canvas id="graficoMes" class="grafico"></canvas>
+      </div>
+    </section>
+
+    <!-- Meses -->
+    <section id="pantalla-meses" class="pantalla">
+      <h2 class="section-title"><i class="fa-solid fa-calendar"></i> Recolección por Mes</h2>
+      <p class="muted">Aquí se muestran los valores por cada uno de los 12 meses.</p>
+
+      <div class="card">
+        <table class="table">
+          <thead><tr><th>Mes</th><th>Litros</th><th>Ahorro vs mes ant.</th></tr></thead>
+          <tbody id="tabla-meses"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Consumo -->
+    <section id="pantalla-consumo" class="pantalla">
+      <h2 class="section-title"><i class="fa-solid fa-chart-pie"></i> Consumo del Agua</h2>
+      <p class="muted">Ejemplos de consumo por puntos y cálculo de uso/porcentaje. Aquí se muestran 3 meses de ejemplo.</p>
+
+      <div id="contenedor-consumo"></div>
+    </section>
+
+    <!-- Config -->
+    <section id="pantalla-config" class="pantalla">
+      <h2 class="section-title"><i class="fa-solid fa-gear"></i> Configuración</h2>
+      <p class="muted">Personaliza el nombre del sistema, genera clima simulado o cambia colores.</p>
+
+      <div class="card">
+        <label for="siteName">Nombre del sistema</label>
+        <input id="siteName" type="text" placeholder="Sistema de Captación #27" />
+
+        <label for="tankCapacity">Capacidad del tanque (L)</label>
+        <input id="tankCapacity" type="number" min="1" value="2000" />
+
+        <div class="row">
+          <button id="saveConfig" class="btn primary">Guardar configuración</button>
+          <button id="simulateWeather" class="btn">Simular clima</button>
+        </div>
+
+        <hr />
+        <h4>Clima (simulado)</h4>
+        <div class="weather-card">
+          <p id="weatherText">--</p>
+          <p id="weatherAdvice" class="muted">--</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BOTTOM NAV (mobile-like) -->
+  <nav class="bottom-nav" role="navigation">
+    <button onclick="mostrarPantalla('inicio')" title="Inicio"><i class="fa-solid fa-house"></i></button>
+    <button onclick="mostrarPantalla('meses')" title="Recolección"><i class="fa-solid fa-calendar"></i></button>
+    <button onclick="mostrarPantalla('consumo')" title="Consumo"><i class="fa-solid fa-chart-pie"></i></button>
+    <button onclick="mostrarPantalla('config')" title="Config"><i class="fa-solid fa-gear"></i></button>
+  </nav>
+
+  <!-- SCRIPT PRINCIPAL -->
+  <script src="app.js"></script>
 </body>
 </html>
