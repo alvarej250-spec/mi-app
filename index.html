@@ -6,7 +6,8 @@
     <title>Sistema de Captación de Agua</title>
 
     <!-- ICONOS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- ESTILOS -->
     <link rel="stylesheet" href="styles.css">
@@ -43,7 +44,7 @@
         </button>
     </aside>
 
-    <!-- BOTÓN PARA ABRIR MENÚ -->
+    <!-- BOTÓN ABRIR MENÚ -->
     <button id="btn-abrir-menu" onclick="toggleMenu()">
         <i class="fa-solid fa-bars"></i>
     </button>
@@ -53,29 +54,29 @@
         <h1><i class="fa-solid fa-droplet"></i> Sistema de Agua #27</h1>
     </header>
 
-    <!-- CONTENEDOR PRINCIPAL -->
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
 
-        <!-- PANTALLA INICIO -->
+        <!-- INICIO -->
         <section id="pantalla-inicio" class="pantalla activa">
             <h2 class="titulo-seccion">Estado General</h2>
 
-            <div class="card estado">
+            <div class="card">
                 <h3><i class="fa-solid fa-signal"></i> Estado del Sistema</h3>
                 <p id="estado-texto">✔ Todo en buen funcionamiento</p>
             </div>
 
             <div class="card">
-                <h3><i class="fa-solid fa-water"></i> Agua Recolectada (Mes Actual)</h3>
+                <h3><i class="fa-solid fa-water"></i> Recolección del Mes</h3>
                 <canvas id="graficoMes" class="grafico"></canvas>
             </div>
         </section>
 
-        <!-- PANTALLA MESES -->
+        <!-- MESES -->
         <section id="pantalla-meses" class="pantalla">
             <h2 class="titulo-seccion">Recolección por Mes</h2>
-            <div class="tabla-container">
-                <table>
+            <div class="card">
+                <table class="tabla">
                     <thead>
                         <tr><th>Mes</th><th>Litros</th></tr>
                     </thead>
@@ -84,13 +85,13 @@
             </div>
         </section>
 
-        <!-- PANTALLA CONSUMO -->
+        <!-- CONSUMO -->
         <section id="pantalla-consumo" class="pantalla">
             <h2 class="titulo-seccion">Consumo del Agua</h2>
             <div id="contenedor-consumo"></div>
         </section>
 
-        <!-- PANTALLA CLIMA -->
+        <!-- CLIMA -->
         <section id="pantalla-clima" class="pantalla">
             <h2 class="titulo-seccion">Clima Actual</h2>
 
@@ -105,7 +106,7 @@
         <section id="pantalla-config" class="pantalla">
             <h2 class="titulo-seccion">Configuración</h2>
             <div class="card">
-                <p>Opciones adicionales próximamente.</p>
+                <p>Opciones configurables próximamente.</p>
             </div>
         </section>
 
