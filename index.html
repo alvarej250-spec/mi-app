@@ -1,140 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Captación de Agua</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sistema de Captación · Panel</title>
 
-    <!-- ICONOS -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- ICONOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- ESTILOS -->
-    <link rel="stylesheet" href="styles.css">
+  <!-- ESTILOS -->
+  <link rel="stylesheet" href="styles.css">
 
-    <!-- CHART JS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- CHART.JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
-    <!-- MENÚ LATERAL -->
-    <aside id="menu-lateral" class="menu-lateral">
-        <button class="cerrar-menu" onclick="toggleMenu()">✖</button>
-        <h2>Menú</h2>
+  <!-- MENÚ LATERAL -->
+  <aside id="menu-lateral" class="menu-lateral" aria-hidden="true">
+    <div class="menu-top">
+      <h2><i class="fa-solid fa-droplet"></i> Menú</h2>
+      <button class="cerrar-menu" onclick="toggleMenu()" aria-label="Cerrar menú">✖</button>
+    </div>
 
-        <button class="item-menu" onclick="mostrarPantalla('inicio'); toggleMenu();">
-            <i class="fa-solid fa-house"></i> Inicio
-        </button>
+    <nav class="menu-items" role="navigation">
+      <button class="item-menu" onclick="mostrarPantalla('inicio'); toggleMenu();">
+        <i class="fa-solid fa-house"></i><span>Inicio</span>
+      </button>
 
-        <button class="item-menu" onclick="mostrarPantalla('meses'); toggleMenu();">
-            <i class="fa-solid fa-calendar"></i> Recolección por Mes
-        </button>
+      <button class="item-menu" onclick="mostrarPantalla('meses'); toggleMenu();">
+        <i class="fa-solid fa-calendar"></i><span>Recolección por Mes</span>
+      </button>
 
-        <button class="item-menu" onclick="mostrarPantalla('consumo'); toggleMenu();">
-            <i class="fa-solid fa-chart-pie"></i> Consumo
-        </button>
+      <button class="item-menu" onclick="mostrarPantalla('consumo'); toggleMenu();">
+        <i class="fa-solid fa-chart-pie"></i><span>Consumo</span>
+      </button>
 
-        <button class="item-menu" onclick="mostrarPantalla('clima'); toggleMenu();">
-            <i class="fa-solid fa-cloud"></i> Clima
-        </button>
+      <button class="item-menu" onclick="mostrarPantalla('clima'); toggleMenu();">
+        <i class="fa-solid fa-cloud"></i><span>Clima</span>
+      </button>
 
-        <button class="item-menu" onclick="mostrarPantalla('config'); toggleMenu();">
-            <i class="fa-solid fa-gear"></i> Configuración
-        </button>
-    </aside>
-
-    <!-- BOTÓN ABRIR MENÚ -->
-    <button id="btn-abrir-menu" onclick="toggleMenu()">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-
-    <!-- HEADER -->
-    <header>
-        <h1><i class="fa-solid fa-droplet"></i> Sistema de Agua #27</h1>
-    </header>
-
-    <!-- CONTENIDO PRINCIPAL -->
-    <main>
-
-        <!-- INICIO -->
-        <section id="pantalla-inicio" class="pantalla activa">
-            <h2 class="titulo-seccion">Estado General</h2>
-
-            <div class="card">
-                <h3><i class="fa-solid fa-signal"></i> Estado del Sistema</h3>
-                <p id="estado-texto">✔ Todo en buen funcionamiento</p>
-            </div>
-
-            <div class="card">
-                <h3><i class="fa-solid fa-water"></i> Recolección del Mes</h3>
-                <canvas id="graficoMes" class="grafico"></canvas>
-            </div>
-        </section>
-
-        <!-- MESES -->
-        <section id="pantalla-meses" class="pantalla">
-            <h2 class="titulo-seccion">Recolección por Mes</h2>
-            <div class="card">
-                <table class="tabla">
-                    <thead>
-                        <tr><th>Mes</th><th>Litros</th></tr>
-                    </thead>
-                    <tbody id="tabla-meses"></tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- CONSUMO -->
-        <section id="pantalla-consumo" class="pantalla">
-            <h2 class="titulo-seccion">Consumo del Agua</h2>
-            <div id="contenedor-consumo"></div>
-        </section>
-
-        <!-- CLIMA -->
-        <section id="pantalla-clima" class="pantalla">
-            <h2 class="titulo-seccion">Clima Actual</h2>
-
-            <div class="card clima-card">
-                <h3><i class="fa-solid fa-cloud-sun"></i> Estado del Clima</h3>
-                <p id="texto-clima"></p>
-                <p id="recomendacion-clima" class="clima-recomendacion"></p>
-            </div>
-        </section>
-
-        <!-- CONFIG -->
-        <section id="pantalla-config" class="pantalla">
-            <h2 class="titulo-seccion">Configuración</h2>
-            <div class="card">
-                <p>Opciones configurables próximamente.</p>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- MENÚ INFERIOR -->
-    <nav class="menu">
-        <button onclick="mostrarPantalla('inicio')">
-            <i class="fa-solid fa-house"></i><br>Inicio
-        </button>
-
-        <button onclick="mostrarPantalla('meses')">
-            <i class="fa-solid fa-calendar"></i><br>Meses
-        </button>
-
-        <button onclick="mostrarPantalla('consumo')">
-            <i class="fa-solid fa-chart-pie"></i><br>Consumo
-        </button>
-
-        <button onclick="mostrarPantalla('clima')">
-            <i class="fa-solid fa-cloud"></i><br>Clima
-        </button>
-
-        <button onclick="mostrarPantalla('config')">
-            <i class="fa-solid fa-gear"></i><br>Config
-        </button>
+      <button class="item-menu" onclick="mostrarPantalla('config'); toggleMenu();">
+        <i class="fa-solid fa-gear"></i><span>Configuración</span>
+      </button>
     </nav>
+  </aside>
 
-    <script src="app.js"></script>
+  <!-- BOTÓN ABRIR MENÚ -->
+  <button id="btn-abrir-menu" onclick="toggleMenu()" aria-label="Abrir menú">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <h1><i class="fa-solid fa-droplet"></i> Sistema de Agua #27</h1>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container">
+
+    <!-- INICIO -->
+    <section id="pantalla-inicio" class="pantalla activa">
+      <h2 class="titulo-seccion">Estado General</h2>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-signal"></i> Estado del Sistema</h3>
+        <p id="estado-texto">✔ Todo en buen funcionamiento</p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-water"></i> Recolección (12 meses)</h3>
+        <p class="muted">Se muestran los 12 meses. Las barras están reducidas para caber mejor.</p>
+        <div class="grafico-wrap">
+          <canvas id="graficoMes" class="grafico"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- MESES -->
+    <section id="pantalla-meses" class="pantalla">
+      <h2 class="titulo-seccion">Recolección por Mes</h2>
+      <div class="card">
+        <table class="tabla">
+          <thead><tr><th>Mes</th><th>Litros</th></tr></thead>
+          <tbody id="tabla-meses"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CONSUMO -->
+    <section id="pantalla-consumo" class="pantalla">
+      <h2 class="titulo-seccion">Consumo del Agua</h2>
+      <p class="muted">Ejemplo de consumo por puntos (3 puntos) con porcentajes del total.</p>
+      <div id="contenedor-consumo" class="consumo-grid"></div>
+    </section>
+
+    <!-- CLIMA -->
+    <section id="pantalla-clima" class="pantalla">
+      <h2 class="titulo-seccion">Clima Actual</h2>
+      <div class="card clima-card">
+        <h3><i class="fa-solid fa-cloud-sun"></i> Estado del Clima</h3>
+        <p id="texto-clima">--</p>
+        <p id="recomendacion-clima" class="clima-recomendacion">--</p>
+        <div class="row">
+          <button id="simularClimaBtn" class="btn">Simular clima</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONFIG -->
+    <section id="pantalla-config" class="pantalla">
+      <h2 class="titulo-seccion">Configuración</h2>
+      <div class="card">
+        <p>Opciones próximamente.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MENÚ INFERIOR -->
+  <nav class="menu">
+    <button onclick="mostrarPantalla('inicio')"><i class="fa-solid fa-house"></i><br>Inicio</button>
+    <button onclick="mostrarPantalla('meses')"><i class="fa-solid fa-calendar"></i><br>Meses</button>
+    <button onclick="mostrarPantalla('consumo')"><i class="fa-solid fa-chart-pie"></i><br>Consumo</button>
+    <button onclick="mostrarPantalla('clima')"><i class="fa-solid fa-cloud"></i><br>Clima</button>
+    <button onclick="mostrarPantalla('config')"><i class="fa-solid fa-gear"></i><br>Config</button>
+  </nav>
+
+  <script src="app.js"></script>
 </body>
 </html>
